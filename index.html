@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,35 +9,41 @@
     <script src="main.js" defer></script>
     <title>RSS and Atom</title>
 </head>
+
 <body>
     <form id="form" method="post">
-          <div class="container">
-              <label for="nom"><strong>Type : </strong></label>
-              <select name="type" id="type">
-                  <option value="atom"> Atom </option>
-                  <option value="rss"> RSS </option>
-              </select>
-          </div>
-          <div class="btn-container">
-              <button type="submit" id="submit">Valider</button>
-          </div>
+        <div class="container">
+            <label for="nom"><strong>Type : </strong></label>
+            <select name="type" id="type">
+                <option value="atom"> Atom </option>
+                <option value="rss"> RSS </option>
+            </select>
         </div>
-      </form>
+        <div class="btn-container">
+            <button type="submit" id="submit">Valider</button>
+        </div>
+        </div>
+    </form>
+
+    <h2 id="title"></h2>
+    <p id="description"></p>
+
     <div class="table-container">
         <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Link</th>
-              <th>Author</th>
-              <th>Description</th>
-              <th>Category</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody id="data">
-          </tbody>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Link</th>
+                    <th>Author</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="data">
+            </tbody>
         </table>
     </div>
 </body>
+
 </html>

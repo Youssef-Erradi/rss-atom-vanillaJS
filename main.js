@@ -2,6 +2,8 @@ const HOST = "http://localhost:6464"
 const form = document.getElementById("form")
 const type = document.getElementById("type")
 const data = document.getElementById("data")
+const title = document.getElementById("title")
+const description = document.getElementById("description")
 const callbacks = Object.freeze({ "atom": atom, "rss": rss })
 const parser = new DOMParser()
 
@@ -15,6 +17,8 @@ async function atom() {
     const response = await fetch(`${HOST}/atom`)
     const text = await response.text()
     const xml = parser.parseFromString(text, "text/xml");
+    title.innerText = xml.getElementsByTagName("title")[0].textContent
+    description.innerText = xml.getElementsByTagName("subtitle")[0].textContent
     Array.from(xml.getElementsByTagName('entry')).forEach(entry => {
         const tr = document.createElement("tr")
 
