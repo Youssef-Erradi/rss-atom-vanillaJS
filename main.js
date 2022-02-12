@@ -1,3 +1,4 @@
+const HOST = "http://localhost:6464"
 const form = document.getElementById("form")
 const type = document.getElementById("type")
 const data = document.getElementById("data")
@@ -5,18 +6,18 @@ const callbacks = Object.freeze({ "atom": atom, "rss": rss })
 const parser = new DOMParser()
 
 form.addEventListener("submit", (event) => {
-    data.innerHTML = ""
     event.preventDefault()
+    data.innerHTML = ""
     callbacks[type.value]()
 })
 
-async function atom(){
-    const response = await fetch("http://localhost:6464/atom")
+async function atom() {
+    const response = await fetch(`${HOST}/atom`)
     const text = await response.text()
     const xml = parser.parseFromString(text, "text/xml");
     Array.from(xml.getElementsByTagName('entry')).forEach(entry => {
         const tr = document.createElement("tr")
-        
+
         let td = document.createElement("td")
         td.innerText = entry.getElementsByTagName("title")[0].textContent
         tr.appendChild(td)
@@ -49,8 +50,8 @@ async function atom(){
     })
 }
 
-async function rss(){
-    const response = await fetch("http://localhost:6464/rss")
+async function rss() {
+    const response = await fetch(`${HOST}/rss`)
     const text = await response.text()
     const xml = parser.parseFromString(text, "text/xml");
     console.log(xml)
