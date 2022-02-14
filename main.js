@@ -58,5 +58,41 @@ async function rss() {
     const response = await fetch(`${HOST}/rss`)
     const text = await response.text()
     const xml = parser.parseFromString(text, "text/xml");
-    console.log(xml)
+
+    title.innerText = xml.getElementsByTagName("title")[0].textContent
+    description.innerText = xml.getElementsByTagName("description")[0].textContent
+    Array.from(xml.getElementsByTagName('item')).forEach(item => {
+        const tr = document.createElement("tr")
+
+        let td = document.createElement("td")
+        td.innerText = item.getElementsByTagName("title")[0].textContent
+        tr.appendChild(td)
+
+        td = document.createElement("td")
+        let a = document.createElement("a")
+        a.innerText = "Github repo"
+        a.target = "blank"
+        a.href = item.getElementsByTagName("link")[0].textContent
+        td.appendChild(a)
+        tr.appendChild(td)
+
+        td = document.createElement("td")
+        td.innerText = item.getElementsByTagName("author")[0].textContent
+        tr.appendChild(td)
+
+        td = document.createElement("td")
+        td.innerText = item.getElementsByTagName("description")[0].textContent
+        tr.appendChild(td)
+
+        td = document.createElement("td")
+        td.innerText = item.getElementsByTagName("category")[0].textContent
+        tr.appendChild(td)
+
+        td = document.createElement("td")
+        td.innerText = new Date(item.getElementsByTagName("pubDate")[0].textContent).toLocaleString("FR-fr")
+        tr.appendChild(td)
+
+        data.appendChild(tr)
+
+    })
 }
