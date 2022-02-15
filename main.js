@@ -1,5 +1,4 @@
 const HOST = "http://localhost:6464"
-const form = document.getElementById("form")
 const type = document.getElementById("type")
 const data = document.getElementById("data")
 const title = document.getElementById("title")
@@ -9,8 +8,7 @@ const parser = new DOMParser()
 
 window.onload = callbacks["atom"]
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault()
+type.addEventListener("change", (event) => {
     data.innerHTML = ""
     callbacks[type.value]()
 })
