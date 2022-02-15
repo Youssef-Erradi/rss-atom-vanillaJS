@@ -7,6 +7,8 @@ const description = document.getElementById("description")
 const callbacks = Object.freeze({ "atom": atom, "rss": rss })
 const parser = new DOMParser()
 
+window.onload = callbacks["atom"]
+
 form.addEventListener("submit", (event) => {
     event.preventDefault()
     data.innerHTML = ""
